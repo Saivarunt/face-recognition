@@ -10,7 +10,7 @@ def act(img):
   encode_img = face_recognition.face_encodings(rgb)[0]
 
   imdir = '/content/' # add custom path name to traves and compare images in directory
-  ext = ['png', 'jpg', 'gif','jpeg']    # Add image formats here
+  ext = ['png', 'jpg', 'gif','jpeg']    # Add image formats here (if required and not present in the list)
 
   files = []
   [files.extend(glob.glob(imdir + '*.' + e)) for e in ext]
@@ -30,5 +30,6 @@ def snap(img):
   return act(img)
   
 
+#try changing input type to "image" and upload a captured image if the webcam crashes
 g=gr.Interface(snap, gr.inputs.Image(source="webcam", tool=None), "text")
 g.launch(debug=True,)
